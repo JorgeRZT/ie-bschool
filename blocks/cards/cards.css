@@ -166,8 +166,18 @@
     grid-row: span 2;
   }
 
+  .cards.programs > ul > li:nth-child(-n+2) .cards-card-image {
+    flex: 1;
+    min-height: 0;
+  }
+
   .cards.programs > ul > li:nth-child(-n+2) img {
-    aspect-ratio: 290 / 184;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .cards.programs > ul > li:nth-child(-n+2) .cards-card-body {
+    flex: 0 0 auto;
   }
 
   .cards.programs > ul > li:nth-child(n+3) {
