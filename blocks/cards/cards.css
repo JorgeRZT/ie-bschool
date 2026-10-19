@@ -80,7 +80,7 @@
   margin: 0;
   font-family: var(--heading-font-family);
   font-size: 12px;
-  color: #757575;
+  color: #666;
 }
 
 @media (width >= 900px) {
