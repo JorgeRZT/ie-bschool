@@ -608,6 +608,10 @@ header .nav-topbar {
 }
 
 /* logo variants and scroll behaviour */
+header .nav-wrapper {
+  z-index: 100;
+}
+
 header nav .nav-brand .icon img.logo-dark {
   display: none;
 }
