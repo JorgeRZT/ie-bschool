@@ -184,6 +184,23 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
+  // optional first section with social / language / utility links becomes a top bar
+  let topbar;
+  if (nav.children.length > 3) {
+    topbar = nav.firstElementChild;
+    topbar.className = 'nav-topbar';
+    topbar.querySelectorAll('.button, .button-container').forEach((el) => el.classList.remove('button', 'button-container', 'primary', 'secondary'));
+  }
+
+  // accessible names for icon-only links
+  [topbar, nav].forEach((root) => root && root.querySelectorAll('a').forEach((a) => {
+    if (a.textContent.trim()) return;
+    const icon = a.querySelector('.icon');
+    if (!icon) return;
+    const name = [...icon.classList].find((c) => c.startsWith('icon-') && c !== 'icon').slice(5);
+    a.setAttribute('aria-label', name.startsWith('ie-logo') ? 'IE University home' : name.charAt(0).toUpperCase() + name.slice(1));
+  }));
+
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
@@ -234,6 +251,7 @@ export default async function decorate(block) {
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
+  if (topbar) navWrapper.append(topbar);
   navWrapper.append(nav);
   block.append(navWrapper);
 

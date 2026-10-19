@@ -18,6 +18,9 @@ function updateActiveSlide(slide) {
     });
   });
 
+  const counter = block.querySelector('.carousel-counter');
+  if (counter) counter.textContent = `${slideIndex + 1} of ${slides.length}`;
+
   const indicators = block.querySelectorAll('.carousel-slide-indicator');
   indicators.forEach((indicator, idx) => {
     if (idx !== slideIndex) {
@@ -96,7 +99,9 @@ export default async function decorate(block) {
   const rows = block.querySelectorAll(':scope > div');
   const isSingleSlide = rows.length < 2;
 
-  const placeholders = await fetchPlaceholders();
+  const isHero = block.classList.contains('hero');
+  // hero carousels sit on the LCP path: skip the placeholders round trip
+  const placeholders = isHero ? {} : await fetchPlaceholders();
 
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', placeholders.carousel || 'Carousel');
@@ -143,6 +148,24 @@ export default async function decorate(block) {
 
   container.append(slidesWrapper);
   block.prepend(container);
+
+  if (isHero) {
+    const firstImg = block.querySelector('.carousel-slide img');
+    if (firstImg) {
+      firstImg.loading = 'eager';
+      firstImg.fetchPriority = 'high';
+    }
+    if (!isSingleSlide) {
+      const bar = document.createElement('div');
+      bar.className = 'carousel-bar';
+      bar.innerHTML = `<p class="carousel-counter" aria-live="polite">1 of ${rows.length}</p>
+        <a class="carousel-scroll" href="#main-after-hero">Scroll down</a>`;
+      bar.append(container.querySelector('.carousel-navigation-buttons'));
+      block.append(bar);
+      const next = block.closest('.section')?.nextElementSibling;
+      if (next) next.id = 'main-after-hero';
+    }
+  }
 
   if (!isSingleSlide) {
     bindEvents(block);

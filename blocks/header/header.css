@@ -322,3 +322,186 @@ header .breadcrumbs ol li[aria-current] {
     padding: 0 32px;
   }
 }
+
+/* stylelint-disable no-duplicate-selectors, no-descending-specificity */
+
+/* ---- IE brand overrides ---- */
+header .nav-wrapper {
+  background-color: var(--ie-navy);
+  color: #fff;
+}
+
+header nav {
+  max-width: none;
+  font-family: var(--heading-font-family);
+}
+
+header nav .nav-hamburger button {
+  background-color: transparent;
+}
+
+header nav .nav-brand {
+  flex-basis: 110px;
+}
+
+header nav .nav-brand a {
+  display: block;
+  line-height: 0;
+}
+
+header nav .nav-brand .icon {
+  width: 92px;
+  height: 46px;
+}
+
+header nav .nav-brand .icon img {
+  width: 100%;
+  height: 100%;
+}
+
+header nav .nav-sections ul {
+  font-size: 13px;
+}
+
+header nav .nav-sections .default-content-wrapper > ul > li > p {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
+  font-weight: 500;
+}
+
+header nav[aria-expanded='true'] .nav-sections .default-content-wrapper > ul > li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgb(255 255 255 / 20%);
+}
+
+header nav[aria-expanded='true'] .nav-sections .default-content-wrapper > ul > li > ul {
+  margin: 8px 0 0;
+}
+
+header nav[aria-expanded='true'] .nav-sections .default-content-wrapper > ul > li > ul > li {
+  padding: 6px 0;
+}
+
+header nav .nav-tools .button:any-link {
+  margin: 0;
+  border: 1px solid #fff;
+  padding: 10px 14px;
+  background: transparent;
+  color: #fff;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+header nav .nav-tools .button::after {
+  display: none;
+}
+
+header nav .nav-tools .button:hover {
+  background: #fff;
+  color: var(--ie-navy);
+}
+
+/* top bar */
+header .nav-topbar {
+  display: none;
+}
+
+@media (width >= 900px) {
+  header .nav-topbar {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    box-sizing: border-box;
+    height: var(--topbar-height);
+    padding: 0 32px;
+    border-bottom: 1px solid rgb(255 255 255 / 15%);
+    font-family: var(--heading-font-family);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  header .nav-topbar .default-content-wrapper {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 32px;
+  }
+
+  header .nav-topbar ul {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  header .nav-topbar ul:nth-of-type(2) {
+    gap: 0;
+  }
+
+  header .nav-topbar ul:nth-of-type(2) li + li::before {
+    content: '|';
+    padding: 0 8px;
+  }
+
+  header .nav-topbar ul:last-of-type {
+    margin-left: auto;
+    gap: 24px;
+  }
+
+  header .nav-topbar a:any-link {
+    color: #fff;
+  }
+
+  header .nav-topbar .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  header nav {
+    align-items: center;
+    padding: 0 32px;
+  }
+
+  header nav .nav-brand {
+    flex-basis: 140px;
+  }
+
+  header nav .nav-brand .icon {
+    width: 128px;
+    height: 64px;
+  }
+
+  header nav .nav-sections {
+    display: flex;
+    justify-content: center;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul {
+    gap: 28px;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+    top: 200%;
+    left: -16px;
+    width: 260px;
+    padding: 16px 24px;
+    background-color: #fff;
+    color: var(--text-color);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 20%);
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
+    border-bottom-color: #fff;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > ul a:hover {
+    color: var(--ie-blue);
+  }
+}
