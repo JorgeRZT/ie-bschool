@@ -79,8 +79,9 @@
 .cards.news p:last-child {
   margin: 0;
   font-family: var(--heading-font-family);
-  font-size: 12px;
-  color: #666;
+  font-size: 14px;
+  font-weight: 700;
+  color: #6b6b6b;
 }
 
 @media (width >= 900px) {
@@ -363,4 +364,9 @@
   .cards.values > ul {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+/* campus: video poster look */
+.cards.campus .cards-card-image {
+  position: relative;
 }

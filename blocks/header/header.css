@@ -515,3 +515,94 @@ header .nav-topbar {
     color: var(--ie-blue);
   }
 }
+
+/* desktop: IE layout — logo left, CTA top-right, menu below, transparent over the home hero */
+@media (width >= 900px) {
+  header .nav-topbar,
+  header nav {
+    padding: 0 max(32px, calc((100% - var(--content-width)) / 2 + 32px));
+  }
+
+  header .nav-topbar {
+    border-bottom: 0;
+    font-size: 10px;
+    font-weight: 400;
+  }
+
+  header .nav-topbar ul:nth-of-type(2) li:last-child a {
+    font-weight: 700;
+  }
+
+  header .nav-topbar ul:last-of-type {
+    gap: 32px;
+  }
+
+  header .nav-topbar ul:first-of-type .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  header nav,
+  header nav[aria-expanded='true'] {
+    display: grid;
+    grid-template:
+      'brand tools' 1fr
+      'brand sections' 1fr / auto 1fr;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 22px;
+  }
+
+  header nav .nav-brand .icon {
+    width: 72px;
+    height: 60px;
+  }
+
+  header nav .nav-tools {
+    justify-self: end;
+  }
+
+  header nav .nav-tools .button:any-link {
+    padding: 12px 24px;
+    font-size: 12px;
+  }
+
+  header nav .nav-sections {
+    justify-self: end;
+    justify-content: flex-end;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul {
+    gap: 30px;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > p {
+    font-size: 12px;
+  }
+
+  header nav .nav-sections .nav-drop {
+    padding-right: 0;
+  }
+
+  header nav .nav-sections .nav-drop::after {
+    display: none;
+  }
+
+  body.home header {
+    height: var(--topbar-height);
+    background: var(--ie-navy);
+  }
+
+  body.home header .nav-wrapper {
+    position: absolute;
+    background: transparent;
+  }
+
+  body.home header .nav-topbar {
+    background: var(--ie-navy);
+  }
+
+  body.home .carousel.hero .carousel-slide {
+    min-height: min(844px, calc(100svh - var(--topbar-height)));
+  }
+}

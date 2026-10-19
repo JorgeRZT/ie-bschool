@@ -212,16 +212,17 @@ main > .section:has(.carousel.hero) > .carousel-wrapper {
 }
 
 .carousel.hero .carousel-slide-content a.button:any-link {
-  min-width: 224px;
   margin-top: 24px;
+  padding: 18px 36px;
   border-color: #fff;
-  background: transparent;
-  color: #fff;
+  background: #fff;
+  color: #0f0f0f;
 }
 
 .carousel.hero .carousel-slide-content a.button:hover {
-  background: #fff;
-  color: var(--ie-navy);
+  border-color: #fff;
+  background: transparent;
+  color: #fff;
 }
 
 .carousel.hero .carousel-slide-content a.button::after {
