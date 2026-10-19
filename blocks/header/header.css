@@ -405,6 +405,16 @@ header nav .nav-tools .button:hover {
   color: var(--ie-navy);
 }
 
+@media (width < 900px) {
+  header nav[aria-expanded='false'] .nav-tools {
+    display: none;
+  }
+
+  header nav[aria-expanded='true'] .nav-tools {
+    padding-bottom: 24px;
+  }
+}
+
 /* top bar */
 header .nav-topbar {
   display: none;

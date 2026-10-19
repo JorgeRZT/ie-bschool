@@ -188,6 +188,7 @@ export default async function decorate(block) {
   let topbar;
   if (nav.children.length > 3) {
     topbar = nav.firstElementChild;
+    topbar.remove();
     topbar.className = 'nav-topbar';
     topbar.querySelectorAll('.button, .button-container').forEach((el) => el.classList.remove('button', 'button-container', 'primary', 'secondary'));
   }

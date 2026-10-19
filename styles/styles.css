@@ -268,12 +268,14 @@ main > .section > .default-content-wrapper p {
 /* section metadata */
 main .section.light,
 main .section.highlight {
+  display: flow-root;
   background-color: var(--light-color);
   margin: 0;
   padding: 48px 0;
 }
 
 main .section.navy {
+  display: flow-root;
   background-color: var(--ie-navy);
   color: #fff;
   margin: 0;
