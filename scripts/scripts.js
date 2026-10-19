@@ -16,6 +16,18 @@ import {
   toClassName,
   toCamelCase,
 } from './aem.js';
+import {
+  runExperimentation,
+  runExperimentationLazy,
+} from './experiment-loader.js';
+
+const experimentationConfig = {
+  prodHost: 'main--ie-bschool--jorgerzt.aem.live',
+  audiences: {
+    mobile: () => window.innerWidth < 600,
+    desktop: () => window.innerWidth >= 600,
+  },
+};
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -141,6 +153,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   doc.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  await runExperimentation(doc, experimentationConfig);
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     doc.body.dataset.breadcrumbs = true;
   }
@@ -182,6 +195,7 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+  await runExperimentationLazy(doc, experimentationConfig);
 }
 
 /**

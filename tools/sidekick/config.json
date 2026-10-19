@@ -1,5 +1,29 @@
 {
   "project": "DA Block Collection",
   "editUrlLabel": "Document Authoring",
-  "editUrlPattern": "https://da.live/edit#/{{org}}/{{site}}{{pathname}}"
+  "editUrlPattern": "https://da.live/edit#/{{org}}/{{site}}{{pathname}}",
+  "plugins": [
+    {
+      "id": "experimentation",
+      "titleI18n": {
+        "en": "Experimentation"
+      },
+      "environments": [
+        "dev",
+        "preview"
+      ],
+      "event": "experimentation"
+    },
+    {
+      "id": "aem-experimentation",
+      "titleI18n": {
+        "en": "Simulate experiment"
+      },
+      "environments": [
+        "dev",
+        "preview"
+      ],
+      "event": "aem-experimentation-sidekick"
+    }
+  ]
 }
