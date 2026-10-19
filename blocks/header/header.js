@@ -259,4 +259,31 @@ export default async function decorate(block) {
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     navWrapper.append(await buildBreadcrumbs());
   }
+
+  // IE behaviour: once the top bar scrolls away, the nav sticks to the top in a light theme
+  const brandIcon = navBrand.querySelector('.icon');
+  const lightLogo = brandIcon && brandIcon.querySelector('img');
+  if (lightLogo && /ie-logo-white/.test(brandIcon.className)) {
+    lightLogo.classList.add('logo-light');
+    const darkLogo = lightLogo.cloneNode();
+    darkLogo.src = lightLogo.src.replace('ie-logo-white', 'ie-logo');
+    darkLogo.className = 'logo-dark';
+    darkLogo.loading = 'lazy';
+    brandIcon.append(darkLogo);
+  }
+  const header = block.closest('header') || block;
+  let ticking = false;
+  const onScroll = () => {
+    ticking = false;
+    const threshold = topbar && isDesktop.matches ? topbar.offsetHeight : 0;
+    header.classList.toggle('is-scrolled', window.scrollY > threshold);
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(onScroll);
+    }
+  }, { passive: true });
+  isDesktop.addEventListener('change', onScroll);
+  onScroll();
 }

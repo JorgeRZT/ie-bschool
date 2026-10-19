@@ -606,3 +606,93 @@ header .nav-topbar {
     min-height: min(844px, calc(100svh - var(--topbar-height)));
   }
 }
+
+/* logo variants and scroll behaviour */
+header nav .nav-brand .icon img.logo-dark {
+  display: none;
+}
+
+body.home header {
+  height: var(--topbar-height);
+}
+
+body.home header .nav-wrapper,
+header.is-scrolled .nav-wrapper {
+  position: absolute;
+  background: transparent;
+}
+
+header.is-scrolled nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 3;
+  border-bottom: 1px solid #e6e6e6;
+  background: #fff;
+  color: var(--text-color);
+  animation: header-in 0.25s ease-out;
+}
+
+header.is-scrolled nav .nav-brand .icon img.logo-light {
+  display: none;
+}
+
+header.is-scrolled nav .nav-brand .icon img.logo-dark {
+  display: block;
+}
+
+header.is-scrolled nav .nav-hamburger button {
+  color: var(--text-color);
+}
+
+header.is-scrolled nav .nav-tools .button:any-link {
+  border-color: var(--text-color);
+  color: var(--text-color);
+}
+
+header.is-scrolled nav .nav-tools .button:hover {
+  border-color: var(--ie-navy);
+  background: var(--ie-navy);
+  color: #fff;
+}
+
+@keyframes header-in {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@media (width < 900px) {
+  header nav[aria-expanded='true'],
+  header.is-scrolled nav[aria-expanded='true'] {
+    position: fixed;
+    inset: 0;
+    border-bottom: 0;
+    background: var(--ie-navy);
+    color: #fff;
+    animation: none;
+  }
+
+  header.is-scrolled nav[aria-expanded='true'] .nav-brand .icon img.logo-light {
+    display: block;
+  }
+
+  header.is-scrolled nav[aria-expanded='true'] .nav-tools .button:any-link,
+  header.is-scrolled nav[aria-expanded='true'] .nav-hamburger button {
+    border-color: #fff;
+    color: #fff;
+  }
+
+  header.is-scrolled nav[aria-expanded='true'] .nav-brand .icon img.logo-dark {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header.is-scrolled nav {
+    animation: none;
+  }
+}
